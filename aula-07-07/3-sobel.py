@@ -1,0 +1,22 @@
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+imagem = cv2.imread(r"vsc\pdi\imagem\img.png", 0)
+gx = cv2.Sobel(imagem, cv2.CV_64F,1,0,ksize=3)
+gy = cv2.Sobel(imagem, cv2.CV_64F,0,1,ksize=3)
+gradiente = np.sqrt(gx**2 + gy**2)
+gradiente = cv2.convertScaleAbs(gradiente)
+plt.figure(figsize=(15,5))
+plt.subplot(131)
+plt.imshow(gx,cmap='gray')
+plt.title("Gradiente X")
+plt.axis('off')
+plt.subplot(132)
+plt.imshow(gy,cmap='gray')
+plt.title("Gradiente Y")
+plt.axis('off')
+plt.subplot(133)
+plt.imshow(gradiente,cmap='gray')
+plt.title("Magnitude")
+plt.axis('off')
+plt.show()
